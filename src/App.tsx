@@ -36,6 +36,7 @@ function Sidebar() {
       </div>
 
       <div className="container">
+        <div className="backdrop"></div>
         {/* <span className="background-clouds"></span> */}
         {/* <img src="/src/assets/Cloud-background.png" alt="HeavyCloud" /> */}
         {/* <div className="backdrop"></div> */}
