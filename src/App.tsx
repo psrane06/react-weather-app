@@ -1,4 +1,5 @@
 import "./App.css";
+import fetchWeather from "./weather-api-service";
 
 // const string: key = "e6e7a51e4e10dc302f6e94cf0a5cbdb2";
 // lat: 19.0785451,
@@ -12,9 +13,9 @@ function App() {
   );
 }
 
-function Button(props: { inp: string }) {
+function Button(props: { inp: string; onClick: () => void }) {
   return (
-    <button className="rounded-circle">
+    <button className="rounded-circle" onClick={props.onClick}>
       <span className="material-symbols-outlined align-middle">
         {props.inp}
       </span>
@@ -23,6 +24,13 @@ function Button(props: { inp: string }) {
 }
 
 function Sidebar() {
+  const fetchLatLong = async () => {
+    const latitude = 19.07;
+    const longitude = 72.87;
+    const weatherData = await fetchWeather(latitude, longitude);
+    console.log(weatherData);
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -32,14 +40,11 @@ function Sidebar() {
           name="location-search"
           placeholder="Search for places"
         />
-        <Button inp="my_location" />
+        <Button inp="my_location" onClick={fetchLatLong} />
       </div>
-
+      {/* <SearchCity /> */}
       <div className="container">
         <div className="backdrop"></div>
-        {/* <span className="background-clouds"></span> */}
-        {/* <img src="/src/assets/Cloud-background.png" alt="HeavyCloud" /> */}
-        {/* <div className="backdrop"></div> */}
         <img src="/src/assets/LightRain.png" alt="light rain" />
       </div>
 
@@ -58,5 +63,9 @@ function Sidebar() {
     </div>
   );
 }
+/* 
+function Main() {
+  const responses = await fetchWeatherApi(url, params);
+} */
 
 export default App;
